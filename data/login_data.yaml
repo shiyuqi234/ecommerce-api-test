@@ -1,0 +1,10 @@
+login_cases:
+  - name: "正确用户名密码登录"
+    username: "mor_2314"
+    password: "83r5^_"
+    expected_code: 200
+
+  - name: "错误密码登录"
+    username: "mor_2314"
+    password: "wrong"
+    expected_code: 401
