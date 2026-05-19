@@ -61,6 +61,16 @@ allure generate reports/allure-results -o reports/allure-report --clean
 allure open reports/allure-report
 ```
 
+## Allure 报告
+
+测试用例通过 `@allure.feature` 按模块分组（登录、商品、购物车、下单），生成可视化报告：
+
+```bash
+pytest --alluredir=reports/allure-results --clean-alluredir
+allure generate reports/allure-results -o reports/allure-report --clean
+allure open reports/allure-report
+```
+
 ## 断言策略
 
 - 状态码验证
@@ -68,6 +78,6 @@ allure open reports/allure-report
 - 关键字段值验证（id 一致性、数量 > 0 等）
 - 数据驱动（登录场景）
 
-## TODO
+## CI/CD
 
-- [ ] GitHub Actions 持续集成
+已配置 GitHub Actions，每次 push 到 master 自动运行测试。
