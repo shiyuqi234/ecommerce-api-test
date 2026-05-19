@@ -1,4 +1,7 @@
 import pytest
+import logging
+
+logger = logging.getLogger("ecommerce_test")
 
 
 class TestShoppingCart:
@@ -6,6 +9,7 @@ class TestShoppingCart:
 
     def test_get_all_carts(self, client):
         """查全部购物车"""
+        logger.info("[购物车] 查全部 -> GET /carts")
         resp = client.get("/carts")
         assert resp.status_code == 200
 
@@ -29,6 +33,7 @@ class TestShoppingCart:
 
     def test_get_cart_detail(self, client):
         """查单个购物车"""
+        logger.info("[购物车] 查单个 -> GET /carts/1")
         resp = client.get("/carts/1")
         assert resp.status_code == 200
 
@@ -49,6 +54,7 @@ class TestShoppingCart:
 
     def test_add_cart(self, client):
         """新增购物车"""
+        logger.info("[购物车] 新增 -> POST /carts")
         payload = {
             "userId": 1,
             "date": "2026-05-11",

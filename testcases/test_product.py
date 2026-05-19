@@ -1,4 +1,7 @@
 import pytest
+import logging
+
+logger = logging.getLogger("ecommerce_test")
 
 
 class TestProduct:
@@ -6,7 +9,7 @@ class TestProduct:
 
     def test_get_all_products(self, client):
         """查全部商品"""
-        # 1. 发请求
+        logger.info("[商品] 查全部商品 -> GET /products")
         resp = client.get("/products")
 
         # 2. 验证状态码
@@ -33,7 +36,7 @@ class TestProduct:
 
     def test_get_product_detail(self, client):
         """查单个商品详情"""
-        # 1. 发请求
+        logger.info("[商品] 查商品详情 -> GET /products/1")
         resp = client.get("/products/1")
 
         # 2. 验证状态码

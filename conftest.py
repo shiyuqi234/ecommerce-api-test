@@ -1,6 +1,16 @@
 import pytest
 import yaml
+import logging
 from common.api_client import APIClient
+from utils.logger import setup_logger
+
+
+@pytest.fixture(scope="session", autouse=True)
+def setup_logging():
+    logger = setup_logger()
+    logger.info("=== 测试开始 ===")
+    yield
+    logger.info("=== 测试结束 ===")
 
 
 @pytest.fixture(scope="session")

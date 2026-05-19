@@ -1,5 +1,8 @@
 import pytest
 import yaml
+import logging
+
+logger = logging.getLogger("ecommerce_test")
 
 
 def load_login_data():
@@ -11,6 +14,7 @@ class TestLogin:
     @pytest.mark.parametrize("case", load_login_data())
     def test_login(self, client, case):
         payload = {k: v for k, v in case.items() if k not in ("name", "expected_code")}
+        logger.info(f"[登录] {case['name']} -> POST /auth/login {payload}")
         resp = client.post("/auth/login", json=payload)
 
         assert resp.status_code // 100 == case["expected_code"] // 100
@@ -18,4 +22,4 @@ class TestLogin:
         if 200 <= resp.status_code < 300:
             assert "token" in resp.json()
 
-        print(f"[{case['name']}] 响应: {resp.text[:100]}")
+        logger.info(f"[登录] {case['name']} -> {resp.status_code} {resp.text[:100]}")

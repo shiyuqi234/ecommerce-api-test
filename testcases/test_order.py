@@ -1,4 +1,7 @@
 import pytest
+import logging
+
+logger = logging.getLogger("ecommerce_test")
 
 
 class TestOrder:
@@ -6,6 +9,7 @@ class TestOrder:
 
     def test_place_order(self, client):
         """下单：往购物车添加商品"""
+        logger.info("[下单] 正常下单 -> POST /carts")
         payload = {
             "userId": 1,
             "date": "2026-05-11",
@@ -34,6 +38,7 @@ class TestOrder:
 
     def test_place_order_empty_products(self, client):
         """下单：商品列表为空"""
+        logger.info("[下单] 空商品下单 -> POST /carts")
         payload = {
             "userId": 1,
             "date": "2026-05-11",
@@ -47,6 +52,7 @@ class TestOrder:
 
     def test_place_order_missing_userId(self, client):
         """下单：缺少 userId"""
+        logger.info("[下单] 缺 userId -> POST /carts")
         payload = {
             "date": "2026-05-11",
             "products": [{"productId": 1, "quantity": 1}]
