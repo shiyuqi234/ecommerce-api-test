@@ -1,0 +1,3 @@
+INFO     ecommerce_test:conftest.py:11 === 测试开始 ===
+INFO     ecommerce_test:test_login.py:19 [登录] 正确用户名密码登录 -> POST /auth/login {'username': 'mor_2314', 'password': '83r5^_'}
+INFO     ecommerce_test:test_login.py:27 [登录] 正确用户名密码登录 -> 201 {"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXIiOiJtb3JfMjMxNCIsImlhdCI6MTc3OTIwM

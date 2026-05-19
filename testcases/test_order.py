@@ -1,14 +1,14 @@
-import pytest
+import allure
 import logging
 
 logger = logging.getLogger("ecommerce_test")
 
 
+@allure.feature("下单模块")
 class TestOrder:
-    """下单接口测试"""
 
+    @allure.title("正常下单")
     def test_place_order(self, client):
-        """下单：往购物车添加商品"""
         logger.info("[下单] 正常下单 -> POST /carts")
         payload = {
             "userId": 1,
@@ -27,7 +27,6 @@ class TestOrder:
         assert isinstance(data["products"], list)
         assert len(data["products"]) == 2
 
-        # 验证商品明细
         expected_products = [
             {"productId": 1, "quantity": 2},
             {"productId": 3, "quantity": 1}
@@ -36,8 +35,8 @@ class TestOrder:
             assert actual["productId"] == expected["productId"]
             assert actual["quantity"] == expected["quantity"]
 
+    @allure.title("空商品下单")
     def test_place_order_empty_products(self, client):
-        """下单：商品列表为空"""
         logger.info("[下单] 空商品下单 -> POST /carts")
         payload = {
             "userId": 1,
@@ -50,13 +49,12 @@ class TestOrder:
         data = resp.json()
         assert data["products"] == []
 
+    @allure.title("缺少userId下单")
     def test_place_order_missing_userId(self, client):
-        """下单：缺少 userId"""
         logger.info("[下单] 缺 userId -> POST /carts")
         payload = {
             "date": "2026-05-11",
             "products": [{"productId": 1, "quantity": 1}]
         }
         resp = client.post("/carts", json=payload)
-        # FakeStore 对缺少必填字段的处理
         assert resp.status_code in (200, 201, 400)

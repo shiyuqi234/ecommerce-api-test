@@ -1,0 +1,1 @@
+INFO     ecommerce_test:test_shoppingcart.py:36 [购物车] 查单个 -> GET /carts/1

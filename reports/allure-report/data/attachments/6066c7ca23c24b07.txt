@@ -1,0 +1,1 @@
+INFO     ecommerce_test:test_product.py:31 [商品] 查商品详情 -> GET /products/1

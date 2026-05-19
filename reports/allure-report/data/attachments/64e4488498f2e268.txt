@@ -1,0 +1,1 @@
+INFO     ecommerce_test:test_shoppingcart.py:12 [购物车] 查全部 -> GET /carts

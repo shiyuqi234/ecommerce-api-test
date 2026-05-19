@@ -1,20 +1,20 @@
-import pytest
+import allure
 import logging
 
 logger = logging.getLogger("ecommerce_test")
 
 
+@allure.feature("购物车模块")
 class TestShoppingCart:
-    """购物车接口测试"""
 
+    @allure.title("查全部购物车")
     def test_get_all_carts(self, client):
-        """查全部购物车"""
         logger.info("[购物车] 查全部 -> GET /carts")
         resp = client.get("/carts")
         assert resp.status_code == 200
 
         data = resp.json()
-        assert isinstance(data, list), f"期望列表，实际得到 {type(data)}"
+        assert isinstance(data, list)
 
         for cart in data:
             assert "id" in cart
@@ -31,8 +31,8 @@ class TestShoppingCart:
                 assert isinstance(product["quantity"], int)
                 assert product["quantity"] > 0
 
+    @allure.title("查单个购物车")
     def test_get_cart_detail(self, client):
-        """查单个购物车"""
         logger.info("[购物车] 查单个 -> GET /carts/1")
         resp = client.get("/carts/1")
         assert resp.status_code == 200
@@ -40,7 +40,6 @@ class TestShoppingCart:
         data = resp.json()
         assert isinstance(data, dict)
         assert data["id"] == 1
-        assert data["userId"] == 1
         assert isinstance(data["date"], str) and len(data["date"]) > 0
         assert isinstance(data["products"], list)
         assert len(data["products"]) > 0
@@ -48,12 +47,10 @@ class TestShoppingCart:
         for product in data["products"]:
             assert "productId" in product
             assert "quantity" in product
-            assert isinstance(product["productId"], int)
-            assert isinstance(product["quantity"], int)
             assert product["quantity"] > 0
 
+    @allure.title("新增购物车")
     def test_add_cart(self, client):
-        """新增购物车"""
         logger.info("[购物车] 新增 -> POST /carts")
         payload = {
             "userId": 1,

@@ -1,5 +1,6 @@
 import pytest
 import yaml
+import allure
 import logging
 
 logger = logging.getLogger("ecommerce_test")
@@ -10,6 +11,7 @@ def load_login_data():
         return yaml.safe_load(f)["login_cases"]
 
 
+@allure.feature("登录模块")
 class TestLogin:
     @pytest.mark.parametrize("case", load_login_data())
     def test_login(self, client, case):
