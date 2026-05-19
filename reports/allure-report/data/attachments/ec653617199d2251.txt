@@ -1,2 +1,0 @@
-INFO     ecommerce_test:test_login.py:19 [登录] 错误密码登录 -> POST /auth/login {'username': 'mor_2314', 'password': 'wrong'}
-INFO     ecommerce_test:test_login.py:27 [登录] 错误密码登录 -> 401 username or password is incorrect

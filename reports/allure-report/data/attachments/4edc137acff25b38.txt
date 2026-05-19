@@ -1,1 +1,0 @@
-INFO     ecommerce_test:test_order.py:54 [下单] 缺 userId -> POST /carts

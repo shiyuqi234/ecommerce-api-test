@@ -1,1 +1,0 @@
-INFO     ecommerce_test:test_order.py:12 [下单] 正常下单 -> POST /carts

@@ -1,2 +1,0 @@
-INFO     ecommerce_test:test_shoppingcart.py:54 [购物车] 新增 -> POST /carts
-INFO     ecommerce_test:conftest.py:13 === 测试结束 ===
